@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ootouch-bin
+_pkgname=ootouch
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Capability-safe file creation and access/modification timestamp updater."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ootouch"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ootouch')
+conflicts=('ootouch')
+source_x86_64=("${url}/releases/download/v${pkgver}/ootouch-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ootouch-linux-x86_64" "${pkgdir}/usr/bin/ootouch"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ootouch-uninstall"
+}
